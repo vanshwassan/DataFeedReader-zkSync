@@ -16,11 +16,11 @@ export default async function (hre: HardhatRuntimeEnvironment) {
   const artifact = await deployer.loadArtifact("DataFeedReaderExample");
 
   // Estimate contract deployment fee
-  // const greeting = "Hi there!";
   const deploymentFee = await deployer.estimateDeployFee(artifact, []);
 
-  // // OPTIONAL: Deposit funds to L2
-  // // Comment this block if you already have funds on zkSync.
+  // OPTIONAL: Deposit funds to L2
+  // Comment this block if you already have funds on zkSync.
+
   // const depositHandle = await deployer.zkWallet.deposit({
   //   to: deployer.zkWallet.address,
   //   token: utils.ETH_ADDRESS,
@@ -30,14 +30,11 @@ export default async function (hre: HardhatRuntimeEnvironment) {
   // await depositHandle.wait();
 
   // Deploy this contract. The returned object will be of a `Contract` type, similarly to ones in `ethers`.
-  // `greeting` is an argument for contract constructor.
+
   const parsedFee = ethers.utils.formatEther(deploymentFee.toString());
   console.log(`The deployment is estimated to cost ${parsedFee} ETH`);
 
   const DataFeedReaderContract = await deployer.deploy(artifact, []);
-
-  // //obtain the Constructor Arguments
-  // console.log("constructor args:" + greeterContract.interface.encodeDeploy([]));
 
   // Show the contract info.
   const contractAddress = DataFeedReaderContract.address;
@@ -47,6 +44,7 @@ export default async function (hre: HardhatRuntimeEnvironment) {
   const setDapiProxy =  await DataFeedReaderContract.setProxy("0x28ce555ee7a3daCdC305951974FcbA59F5BdF09b");
   await setDapiProxy.wait(5);
 
+  // Read the dAPI. Returns the value and timestamp.
   const readDataFeed = await DataFeedReaderContract.readDataFeed();
   console.log("readDataFeed: " + readDataFeed);
 }
