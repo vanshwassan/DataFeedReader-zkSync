@@ -2,6 +2,7 @@ import { Wallet, utils } from "zksync-web3";
 import * as ethers from "ethers";
 import { HardhatRuntimeEnvironment } from "hardhat/types";
 import { Deployer } from "@matterlabs/hardhat-zksync-deploy";
+
 require('dotenv').config()
 
 // An example of a deploy script that will deploy and call the DataFeedReader Contract.
@@ -44,7 +45,5 @@ export default async function (hre: HardhatRuntimeEnvironment) {
   const setDapiProxy =  await DataFeedReaderContract.setProxy("0x28ce555ee7a3daCdC305951974FcbA59F5BdF09b");
   await setDapiProxy.wait(5);
 
-  // Read the dAPI. Returns the value and timestamp.
-  const readDataFeed = await DataFeedReaderContract.readDataFeed();
-  console.log("readDataFeed: " + readDataFeed);
+  console.log("Contract deployed successfully! Proxy Contract set!")
 }
