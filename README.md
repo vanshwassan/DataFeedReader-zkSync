@@ -7,21 +7,27 @@
 - To install all the packages:
 
 ```bash
-yarn
+$ yarn
 ```
 
 - Make a `.env` file similar to `example.env` and add your private key:
 
 ```bash
-echo 'PRIVATE_KEY=' > .env
+$ echo 'PRIVATE_KEY=' > .env
 ```
 
 - To compile and deploy the DataFeedReader contract:
 
 ```bash
-yarn hardhat compile
+$ yarn compile
 ```
 
 ```bash
-yarn hardhat deploy-zksync
+$ yarn deploy
+```
+
+- To read the datafeed value:
+
+```bash
+$ yarn readDapi
 ```
