@@ -25,8 +25,8 @@ const readDapi = async (hre: HardhatRuntimeEnvironment) => {
 
   // readDataFeed function call (READ)
   console.log(`Calling the readDataFeed function...`)
-  const greetingFromContract = await DataFeedReaderContract.readDataFeed();
-  console.log(`Function responded with(value and timestamp): ${greetingFromContract}`);
+  const readDataFeed = await DataFeedReaderContract.readDataFeed();
+  console.log(`Function responded with(value and timestamp): ${readDataFeed}`);
   console.log();
 }
 
